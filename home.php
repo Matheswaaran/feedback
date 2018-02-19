@@ -1,3 +1,20 @@
+<?php
+	include "php/includes/config.php";
+	include "php/includes/sessionUtils.php";
+	
+	$session = new sessionUtils();
+	
+	$session->checkSession($_SESSION["user_regno"]);
+	$id = $_SESSION["user_id"];
+	$regno = $_SESSION["user_regno"];
+	$year = $_SESSION["user_year"];
+	$sec = $_SESSION["user_sec"];
+	$sem = $_SESSION["user_sem"];
+	
+	$db = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE) or die("Cannot connect to db..");
+	
+	$subject_arr = mysqli_fetch_array(mysqli_query($db,"SELECT * FROM subject WHERE year = '$year' AND semester = $sem"));
+?>
 <!doctype html>
 <html lang="en">
   <head>

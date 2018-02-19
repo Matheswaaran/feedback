@@ -8,9 +8,12 @@
 			}
 		}
 		
-		public function UserLogin($id,$regno){
+		public function UserLogin($id,$regno,$year,$sec,$sem){
 			$_SESSION['user_id'] = $id;
 			$_SESSION['user_regno'] = $regno;
+			$_SESSION['user_year'] = $year;
+			$_SESSION['user_sec'] = $sec;
+			$_SESSION['user_sem'] = $sem;
 		}
 		
 		public function Logout(){
@@ -33,11 +36,11 @@
 		function checkSession($userChk){
 			$db = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE) or die("Cannot connect to database....");
 			try{
-				$ses_sql = mysqli_query($db,"SELECT * FROM users WHERE username = '$userChk'");
+				$ses_sql = mysqli_query($db,"SELECT * FROM users WHERE regno = '$userChk'");
 				$row = mysqli_fetch_array($ses_sql, MYSQL_ASSOC);
-				$login_user = $row['username'];
+				$user_regno = $row['regno'];
 				
-				if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_username'])){
+				if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_regno']) && !isset($_SESSION['user_year']) && !isset($_SESSION['user_sec'])){
 					header("location: ../index.html");
 				}
 			}catch (exception $e){
@@ -45,3 +48,4 @@
 			}
 		}
 	}
+?>

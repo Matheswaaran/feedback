@@ -4,8 +4,8 @@
 	
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$session = new sessionUtils();
-		$login_reg_num = $_POST["reg_num"];
-		$login_password = $_POST["password"];
+		$login_reg_num = $_POST["login_reg_num"];
+		$login_password = $_POST["login_password"];
 		$login_password = $session->encryptIt($login_password);
 		$login_error = "";
 		
@@ -13,17 +13,19 @@
 		
 		$db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_BASE) or die("Cannot Connect...");
 		
-		if (mysqli_query($db,$login_query)){
-			$login_res = mysqli_query($db,$login_query);
+		if ($login_res = mysqli_query($db,$login_query)){
+//			$login_res = mysqli_query($db,$login_query);
 			if (mysqli_num_rows($login_res) == 1){
-				$login_arr = mysqli_fetch_array($login_query, MYSQL_ASSOC);
-				$session->UserLogin($login_arr['uid'],$login_arr['regno']);
-				echo "SUCCESS";
+				$login_arr = mysqli_fetch_array($login_res);
+				$session->UserLogin($login_arr['uid'],$login_arr['regno'],$login_arr['year'],$login_arr['sec'],$login_arr['semester']);
+				header("location: ../home.php");
 			}else{
-				echo "Invalid Credentials";
+				echo '<script> alert("Invalid credentials");</script>';
+				echo '<script> window.location="../index.html"; </script>';
 			}
 		}else{
-			echo "Login Error";
+			echo '<script> alert("Login Error. Please Try Again.");</script>';
+			echo '<script> window.location="../index.html"; </script>';
 		}
 	}
 ?>
