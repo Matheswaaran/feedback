@@ -11,9 +11,9 @@
 	$sec = $_SESSION["user_sec"];
 	$sem = $_SESSION["user_sem"];
 	
-	$db = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE) or die("Cannot connect to db..");
+	$db = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_BASE) or die("Cannot connect to db..");
 	
-	$subject_arr = mysqli_fetch_array(mysqli_query($db,"SELECT * FROM subject WHERE year = '$year' AND semester = $sem"));
+	$subject_arr = mysqli_fetch_array(mysqli_query($db,"SELECT * FROM subject WHERE year = $year AND semester = $sem"), MYSQL_ASSOC);
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,8 +58,8 @@
           <span class="mdl-layout-title">Material Design Lite</span>
           <div class="mdl-layout-spacer"></div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="exit_to_app">
+	            <a href="php/logout.php" class="material-icons">exit_to_app</a>
             </label>
             <div class="mdl-textfield__expandable-holder">
               <input class="mdl-textfield__input" type="text" id="search">

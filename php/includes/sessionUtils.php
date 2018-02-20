@@ -34,14 +34,17 @@
 		}
 		
 		function checkSession($userChk){
-			$db = mysqli_connect(DB_SERVER,DB_USER,DB_PASSWORD,DB_DATABASE) or die("Cannot connect to database....");
+			
+//			include "config.php";
+			
+			$db = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_BASE) or die("Cannot connect to db..");
 			try{
 				$ses_sql = mysqli_query($db,"SELECT * FROM users WHERE regno = '$userChk'");
 				$row = mysqli_fetch_array($ses_sql, MYSQL_ASSOC);
 				$user_regno = $row['regno'];
 				
 				if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_regno']) && !isset($_SESSION['user_year']) && !isset($_SESSION['user_sec'])){
-					header("location: ../index.html");
+					header("location: index.html");
 				}
 			}catch (exception $e){
 				echo '<script> alert("' . $e . '"");</script>';
