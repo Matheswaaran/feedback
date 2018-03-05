@@ -13,7 +13,7 @@
 	
 	$db = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_BASE) or die("Cannot connect to db..");
 	
-	$subject_arr = mysqli_fetch_array(mysqli_query($db,"SELECT * FROM subject WHERE year = $year AND semester = $sem"), MYSQL_ASSOC);
+	$subject_arr = mysqli_fetch_array(mysqli_query($db,"SELECT * FROM subject WHERE semester = $sem"));
 ?>
 <!doctype html>
 <html lang="en">

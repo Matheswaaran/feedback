@@ -10,7 +10,8 @@
 		$reg_email=$_POST["reg_email"];
 		$reg_reg_num=$_POST["reg_reg_num"];
 		$reg_year=$_POST["reg_year"];
-		$reg_sec=$_POST["reg_sec"];
+		$reg_sec=$_POST["reg_sec"];		
+		$reg_semester=$_POST["reg_semester"];
 		$reg_password=$_POST["reg_password"];
 		$reg_password = $session->encryptIt($reg_password);
 		$reg_repassword=$_POST["reg_repassword"];
@@ -18,7 +19,7 @@
 		
 		$select_query = "SELECT * FROM users WHERE regno = '$reg_reg_num'";
 		
-		$register_query = "INSERT INTO users(name,year,sec,email,password,regno) VALUES ('$reg_name','$reg_year','$reg_sec','$reg_email','$reg_password','$reg_reg_num')";
+		$register_query = "INSERT INTO users(name,year,sec,email,semester,password,regno) VALUES ('$reg_name','$reg_year','$reg_sec','$reg_email','$reg_semester','$reg_password','$reg_reg_num')";
 		
 		$db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_BASE) or die("Cannot Connect...");
 		

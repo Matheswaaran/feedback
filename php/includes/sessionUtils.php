@@ -40,7 +40,7 @@
 			$db = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_BASE) or die("Cannot connect to db..");
 			try{
 				$ses_sql = mysqli_query($db,"SELECT * FROM users WHERE regno = '$userChk'");
-				$row = mysqli_fetch_array($ses_sql, MYSQL_ASSOC);
+				$row = mysqli_fetch_array($ses_sql);
 				$user_regno = $row['regno'];
 				
 				if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_regno']) && !isset($_SESSION['user_year']) && !isset($_SESSION['user_sec'])){

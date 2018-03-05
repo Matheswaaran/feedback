@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Mar 05, 2018 at 07:10 PM
+-- Generation Time: Mar 05, 2018 at 07:29 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `subid` int(11) NOT NULL PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `subject_name` varchar(100) NOT NULL,
   `subject_code` varchar(20) NOT NULL,
+  `semester` varchar(20) NOT NULL,
   `sem` varchar(10) NOT NULL,
   `co1` varchar(3000) NOT NULL,
   `co2` varchar(3000) NOT NULL,
@@ -64,10 +65,11 @@ CREATE TABLE IF NOT EXISTS `subjects` (
 CREATE TABLE IF NOT EXISTS `users` (
   `uid` int(11) NOT NULL PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `emailid` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `year` varchar(10) NOT NULL,
-  `sem` varchar(10) NOT NULL,
+  `sec` varchar(10) NOT NULL,
+  `semester` varchar(10) NOT NULL,
   `regno` bigint(20) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
